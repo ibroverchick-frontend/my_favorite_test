@@ -3,7 +3,7 @@ import { createPinia } from 'pinia';
 import App from './App.vue';
 import { router } from '@/app/providers' 
 
-import './styles/main.css';
+import './styles/main.scss';
 
 export function bootstrap() {
   const app = createApp(App);
