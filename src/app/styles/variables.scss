@@ -2,6 +2,7 @@ $color-primary: #0D6EFD;
 $color-primary-box-shadow: rgba(37, 99, 235, 0.2); 
 $color-danger:  #DC3545;
 $color-inverse: #ffffff;
+$color-white:#ffffff;
 $color-standart-text: #000000;
 $color-barely-text: #6C757D;
 $color-barely-border: #E0E0E0;
@@ -9,4 +10,9 @@ $color-barely-border: #E0E0E0;
 
 $standart-font-size: 14px;
 $header-ui-component-font-size: 16px;
-$header-page-font-size: 32px
+$header-page-font-size: 32px;
+
+
+$transition-speed: 0.2s;
+
+$border-radius: 8px;

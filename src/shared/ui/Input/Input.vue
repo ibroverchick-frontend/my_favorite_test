@@ -49,7 +49,7 @@ const onInputChange = (inputEvent: Event) => {
   padding: 16px 20px;       
   border: 1.5px solid $color-barely-border;
   border-radius: 8px;      
-  font-size: 14px; 
+  font-size: $standart-font-size; 
   font-weight: 400;       
   color: #111827;
   outline: none;
