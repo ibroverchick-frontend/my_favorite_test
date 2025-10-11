@@ -1,15 +1,23 @@
+// src/app/router/index.js
 import { createRouter, createWebHistory } from 'vue-router'
 
-import TestCismPage from '@/pages/TestCismPage.vue'
+// Импорты
+import MainLayouts from '@/app/layouts/MainLayouts.vue'
+import DocumentsPage from '@/pages/DocumentsPage.vue'
 
 export const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: '/',
-      name: 'TestCism',
-      component: TestCismPage,
+      component: MainLayouts, // layout — "обёртка"
+      children: [
+        {
+          path: '',
+          name: 'documents',
+          component: DocumentsPage,
+        },
+      ],
     },
   ],
 })
-

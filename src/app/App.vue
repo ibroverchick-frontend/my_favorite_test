@@ -1,10 +1,8 @@
-<!-- <script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
-</script> -->
 <script setup lang="ts">
+import { RouterLink, RouterView } from 'vue-router'
 import { ref } from 'vue'
 import { UIButton, UIInput } from '@/shared/ui'
-import {Card} from '@/entities/Card'
+import { Card } from '@/entities/Card'
 
 const name = ref('')
 const handleSubmit = () => {
@@ -14,12 +12,11 @@ const handleSubmit = () => {
 
 <template>
   <div class="p-4 space-y-3">
+    <RouterView />
+
     <UIInput v-model="name" placeholder="Введите имя" />
-    <UIButton variant="standard" >Сохранить</UIButton>
-    <Card 
-        title="Пример карточки" 
-    />
-    1
+    <UIButton variant="standard" @click="handleSubmit">Сохранить</UIButton>
+
+    <Card title="Пример карточки" />
   </div>
 </template>
-

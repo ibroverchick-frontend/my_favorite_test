@@ -4,9 +4,10 @@
 
 body {
  font-family: 'Montserrat', sans-serif;
-  font-weight: 100; 
-  color: $color-primary;
-  background-color: #f9f9f9;
+  font-weight: 400; 
+  color: $color-standart-text;
+  background-color: $color-white;
+  margin: 35px 50px;
 }
 
 button {

@@ -28,7 +28,6 @@ const props = defineProps<Props>();
 const imageToShow = props.image ?? defaultImage;
 
 const baseWidth = parseInt(props.width ?? '50', 10); 
-const baseHeight = parseInt(props.height ?? '50', 10);
 
 const computedWidth = `${baseWidth+ 20}px`;
 const computedHeight = props.height ?? '50px'; 
@@ -48,10 +47,14 @@ const computedHeight = props.height ?? '50px';
     transform: translateY(-5px);
 
     .card__main-text {
-      background-color: $color-primary; // или конкретный цвет, например #007bff
-      color: $color-white;
-      border-radius: 0 10px 10px 0;
-      transition: background-color 0.3s, color 0.3s;
+        background-color: $color-primary;
+        color: $color-white;
+        border-radius: 0 10px 10px 0;
+        transition: background-color 0.3s, color 0.3s;
+    }
+    .card__main-text-doc-size {
+        color: $color-white;
+        transition: background-color 0.3s, color 0.3s;
     }
   }
 
@@ -73,7 +76,8 @@ const computedHeight = props.height ?? '50px';
   }
   &__main-text-doc-size {
     font-size: $standart-font-size;
-    font-weight: 200;
+    font-weight: 400;
+    color: $color-barely-text;
   }
 }
 </style>
