@@ -13,10 +13,6 @@ const handleSubmit = () => {
 <template>
   <div class="p-4 space-y-3">
     <RouterView />
-
-    <UIInput v-model="name" placeholder="Введите имя" />
     <UIButton variant="standard" @click="handleSubmit">Сохранить</UIButton>
-
-    <DocumentCard title="Пример карточки" />
   </div>
 </template>

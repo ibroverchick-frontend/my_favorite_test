@@ -1,8 +1,12 @@
 <template>
-  <div class="about">
-    <h1>This is an about page</h1>
+  <div class="documents-page">
+    <SearchDocuments />
   </div>
 </template>
+
+<script setup lang="ts">
+import { SearchDocuments } from '@/features/SearchDocuments'
+</script>
 
 <style>
 

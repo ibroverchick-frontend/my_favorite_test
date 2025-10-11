@@ -1,17 +1,27 @@
 <template>
-  <input
-    :type="props.type || 'text'"
-    :value="inputValue"
-    :placeholder="props.placeholder"
-    :disabled="props.disabled"
-    class="base-input"
-    @input="onInputChange"
-  />
+ <input
+  ref="inputElement"
+  :type="props.type || 'text'"
+  :value="inputValue"
+  :placeholder="props.placeholder"
+  :disabled="props.disabled"
+  class="base-input"
+  @input="onInputChange"
+/>
 </template>
 
 <script setup lang="ts">
 import { defineProps, defineEmits, ref, watch } from 'vue'
 
+import { defineExpose } from 'vue'
+
+defineExpose({
+  focus: () => {
+    inputElement.value?.focus()
+  }
+})
+
+const inputElement = ref<HTMLInputElement | null>(null)
 
 const props = defineProps<{
   modelValue: string
@@ -51,7 +61,7 @@ const onInputChange = (inputEvent: Event) => {
   border-radius: 8px;      
   font-size: $standart-font-size; 
   font-weight: 400;       
-  color: #111827;
+  color: $color-standart-text;
   outline: none;
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
 

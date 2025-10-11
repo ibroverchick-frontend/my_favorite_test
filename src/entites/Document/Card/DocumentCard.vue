@@ -30,7 +30,7 @@ const imageToShow = props.image ?? defaultImage;
 const baseWidth = parseInt(props.width ?? '50', 10); 
 
 const computedWidth = `${baseWidth+ 20}px`;
-const computedHeight = props.height ?? '50px'; 
+const computedHeight = props.height ?? '70px'; 
 </script>
 
 <style lang="scss" scoped>
@@ -59,10 +59,12 @@ const computedHeight = props.height ?? '50px';
   }
 
   &__image {
-    padding: 10px 0; 
+    padding:  0; 
     object-fit: cover;
     box-sizing: content-box; 
     border-right: 1px solid $color-barely-border;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
   }
 
   &__main-text {
