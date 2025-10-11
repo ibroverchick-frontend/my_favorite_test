@@ -185,15 +185,6 @@ onBeforeUnmount(() => {
   color: $color;
 }
 
-:root {
-  --bg: #ffffff;
-  --muted: #666666;
-  --border: #e6e6e6;
-  --card-shadow: 0 6px 18px rgba(13, 38, 59, 0.04);
-  --accent: #1f8efa;
-  --danger: #c62828;
-}
-
 .search-documents {
   display: flex;
   flex-direction: column;
