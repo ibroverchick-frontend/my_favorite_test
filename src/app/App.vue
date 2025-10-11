@@ -2,7 +2,7 @@
 import { RouterLink, RouterView } from 'vue-router'
 import { ref } from 'vue'
 import { UIButton, UIInput } from '@/shared/ui'
-import { Card } from '@/entities/Card'
+import { DocumentCard } from '@/entites/Document/Card'
 
 const name = ref('')
 const handleSubmit = () => {
@@ -17,6 +17,6 @@ const handleSubmit = () => {
     <UIInput v-model="name" placeholder="Введите имя" />
     <UIButton variant="standard" @click="handleSubmit">Сохранить</UIButton>
 
-    <Card title="Пример карточки" />
+    <DocumentCard title="Пример карточки" />
   </div>
 </template>
