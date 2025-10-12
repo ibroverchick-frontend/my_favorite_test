@@ -25,7 +25,7 @@ import { PinnedDocument } from '@/features/PinnedDocument';
   }
 }
 
-@media (max-width: 1300px) {
+@media (max-width: 1320px) {
   .document-finder {
     display: block;
   }

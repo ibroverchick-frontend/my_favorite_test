@@ -218,6 +218,17 @@ function onCardClick(doc: Doc) {
   &__status-error {
     @include status-style($color-danger);
   } 
+
+   &__results {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    max-height: 65vh; 
+    overflow-y: auto; 
+    padding-right: 12px; 
+    margin-right: -8px; 
+    scrollbar-gutter: stable; 
+  }
+
     
   &__results-cards {
     list-style: none;
