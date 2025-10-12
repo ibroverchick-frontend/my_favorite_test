@@ -13,6 +13,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 35px;
     &__app-name {
         font-weight: 700;
         font-size: 32px;

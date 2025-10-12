@@ -202,11 +202,12 @@ function onCardClick(doc: Doc) {
 .search-documents {
   display: flex;
   flex-direction: column;
-
+  padding: 20px;
+  padding-top: 0;
   &__title {
     font-weight: 600;
     font-size: 16px; 
-    padding-top: 20px;
+    padding-top: 25px;
     padding-bottom: 12px;
   }
 
@@ -244,11 +245,5 @@ function onCardClick(doc: Doc) {
   }
 }
 
-@media (min-width: 720px) {
-  .search-documents {
-    &__results-cards {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-}
+
 </style>

@@ -1,0 +1,1 @@
+export { default as PinnedDocument } from './PinnedDocument.vue'
