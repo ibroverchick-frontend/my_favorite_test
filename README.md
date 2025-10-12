@@ -1,48 +1,30 @@
-# my_favorite_test
+# Центр изучения и сетевого мониторинга молодёжной среды – Frontend (Vue.js)
 
-This template should help get you started developing with Vue 3 in Vite.
+Добро пожаловать в проект Центра изучения и сетевого мониторинга молодёжной среды – аккредитованной IT-компании, созданной по поручению Президента России в 2018 году.
 
-## Recommended IDE Setup
+Наша миссия – разработка социально значимых технологических решений для защиты детей и подростков от деструктивного контента в цифровом пространстве. Через создание комплексной мониторинговой системы мы формируем безопасную среду для нового поколения.
 
-[VS Code](https://code.visualstudio.com/) + [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+Этот проект — часть наших усилий по созданию надежной и безопасной цифровой инфраструктуры. Ниже вы найдете инструкции для быстрого старта работы с Frontend на Vue.js.
 
-## Recommended Browser Setup
+---
 
-- Chromium-based browsers (Chrome, Edge, Brave, etc.):
-  - [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd) 
-  - [Turn on Custom Object Formatter in Chrome DevTools](http://bit.ly/object-formatters)
-- Firefox:
-  - [Vue.js devtools](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
-  - [Turn on Custom Object Formatter in Firefox DevTools](https://fxdx.dev/firefox-devtools-custom-object-formatters/)
 
-## Type Support for `.vue` Imports in TS
+## Настройка проекта
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vite.dev/config/).
-
-## Project Setup
+Склонируйте репозиторий и установите зависимости:
 
 ```sh
 npm install
 ```
 
-### Compile and Hot-Reload for Development
+### Запуск проекта 
 
 ```sh
 npm run dev
 ```
 
-### Type-Check, Compile and Minify for Production
+---
 
-```sh
-npm run build
-```
+## Дополнительно
 
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
+Мы ищем разработчиков, которые хотят создавать безопасный и качественный цифровой продукт для нового поколения. Присоединяйтесь к нашей команде и помогите нам сделать интернет безопаснее!
