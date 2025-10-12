@@ -93,11 +93,49 @@ const downloadDocument = () => {
       color: $color-barely-text;
   }
   &__empty {
-    font-style: italic;
     color: #888;
+    width: 100%;
+    height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }
 
+@media (max-width: 1300px) {
+  .pinned-document {
+    &__empty {
+        border-top: $color-barely-border 1px solid;
+        height: 45vh;
+    }
+  }
+}
+
+@media (max-width: 900px) {
+  .pinned-document {
+    display: block;
+    &__main-title {
+        padding-top: 15px;
+        text-align: center;
+    }
+    &__main-panel-controls {
+        justify-content: center;
+        padding-bottom: 20px;
+    }
+    &__main-description {
+        text-align: center;
+    }
+  }
+}
+
+@media (max-width: 340px) {
+  .pinned-document {
+    &__empty {
+        height: 20vh;
+        font-size: 12px;
+    }
+  }
+}
 
 
 

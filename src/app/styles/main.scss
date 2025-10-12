@@ -15,3 +15,9 @@ button {
   transition: all $transition-speed ease;
   border-radius: $border-radius;
 }
+
+@media (max-width: 900px) {
+  body {
+    margin: 15px 20px;
+  }
+}
