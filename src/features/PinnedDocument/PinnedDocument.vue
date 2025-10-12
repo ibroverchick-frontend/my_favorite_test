@@ -15,7 +15,7 @@
         <UIButton variant="standard" @click="downloadDocument">
           Скачать
         </UIButton>
-        <UIButton variant="delete" @click="unpinDocument">
+        <UIButton variant="delete" @click="unpinDocument" :disabled="!isImageValid">
           Удалить
         </UIButton>
       </div>
@@ -35,14 +35,20 @@
 </template>
 
 <script setup lang="ts">
+import { computed } from 'vue'
 import { UIButton } from '@/shared/ui'
 import { usePinnedDocumentStore } from '@/entites/Document/store/pinnedDocument'
 import { storeToRefs } from 'pinia'
 import defaultImage from '@/shared/assets/img/default.webp'
+import { isValidImageUrl } from '@/shared/lib/validate'
 
 const store = usePinnedDocumentStore()
 const { pinnedDocument, hasPinnedDocument } = storeToRefs(store)
 const { unpinDocument } = store
+
+const isImageValid = computed(() => {
+  return isValidImageUrl(pinnedDocument.value?.image)
+})
 
 const downloadDocument = () => {
   if (!pinnedDocument.value) return
