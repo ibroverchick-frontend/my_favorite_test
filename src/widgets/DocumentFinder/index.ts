@@ -1,0 +1,1 @@
+export { default as DocumentFinder } from './DocumentFinder.vue'

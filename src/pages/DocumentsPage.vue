@@ -1,11 +1,11 @@
 <template>
   <div class="documents-page">
-    <SearchDocuments />
+    <DocumentFinder />
   </div>
 </template>
 
 <script setup lang="ts">
-import { SearchDocuments } from '@/features/SearchDocuments'
+import {DocumentFinder} from '@/widgets/DocumentFinder'
 </script>
 
 <style>
