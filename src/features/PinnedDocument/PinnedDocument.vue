@@ -30,7 +30,7 @@
   </div>
 
   <div v-else class="pinned-document__empty">
-    Нет прикреплённого документа
+    Выберите документ, чтобы посмотреть его содержиое
   </div>
 </template>
 
@@ -105,6 +105,8 @@ const downloadDocument = () => {
     display: flex;
     justify-content: center;
     align-items: center;
+    text-align: center;
+    padding: 0 20px;
   }
 }
 
