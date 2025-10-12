@@ -4,16 +4,20 @@
       :src="pinnedDocument?.image || defaultImage"
       alt="pinned-document-img"
       class="pinned-document__img"
-    >
+    />
 
     <div class="pinned-document__main">
-        <h2 class="pinned-document__main-title">
-             {{ pinnedDocument?.name }}
-        </h2>
+      <h2 class="pinned-document__main-title">
+        {{ pinnedDocument?.name }}
+      </h2>
 
       <div class="pinned-document__main-panel-controls">
-          <UIButton variant="standard">Скачать</UIButton>
-          <UIButton variant="delete" @click="unpinDocument">Удалить</UIButton>
+        <UIButton variant="standard" @click="downloadDocument">
+          Скачать
+        </UIButton>
+        <UIButton variant="delete" @click="unpinDocument">
+          Удалить
+        </UIButton>
       </div>
 
       <div class="pinned-document__main-description">
@@ -39,7 +43,27 @@ import defaultImage from '@/shared/assets/img/default.webp'
 const store = usePinnedDocumentStore()
 const { pinnedDocument, hasPinnedDocument } = storeToRefs(store)
 const { unpinDocument } = store
+
+const downloadDocument = () => {
+  if (!pinnedDocument.value) return
+
+  const content = pinnedDocument.value.description || 'Нет описания'
+  const filename = pinnedDocument.value.name + '.txt'
+
+  const blob = new Blob([content], { type: 'text/plain;charset=utf-8' })
+  const url = URL.createObjectURL(blob)
+
+  const link = document.createElement('a')
+  link.href = url
+  link.download = filename
+  document.body.appendChild(link)
+  link.click()
+  document.body.removeChild(link)
+
+  URL.revokeObjectURL(url)
+}
 </script>
+
 
 <style lang="scss" scoped>
 .pinned-document {
