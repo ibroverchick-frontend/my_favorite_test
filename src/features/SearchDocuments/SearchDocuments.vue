@@ -22,15 +22,26 @@
     <div class="search-documents__results">
       <template v-if="docs.length > 0">
         <ul class="search-documents__results-cards">
-          <li v-for="doc in docs" :key="doc.id" class="search-documents__results-card-wrapper">
+          <li
+            v-for="doc in docs"
+            :key="doc.id"
+            class="search-documents__results-card-wrapper"
+            role="button"
+            tabindex="0"
+            @click="onCardClick(doc)"
+            @keyup.enter="onCardClick(doc)"
+          >
             <DocumentCard
-              :title="doc.name  || 'Без названия'"
+              :title="doc.name || 'Без названия'"
               :image="doc.image"
             />
           </li>
         </ul>
       </template>
-      <div v-else-if="!loading && !error" class="search-documents__no-results">Результатов не найдено.</div>
+
+      <div v-else-if="!loading && !error" class="search-documents__no-results">
+        Результатов не найдено.
+      </div>
     </div>
   </div>
 </template>
@@ -39,12 +50,14 @@
 import { ref, watch, onBeforeUnmount, nextTick } from 'vue'
 import axios from 'axios'
 import { UIInput } from '@/shared/ui'
-import { validate,request,normalize } from '@/shared/lib'
+import { validate, request, normalize } from '@/shared/lib'
 import { DocumentCard } from '@/entites/Document/Card'
 import { isRequestCanceled } from '@/shared/utils/axiosUtils'
 import { getErrorMessage, DEFAULT_FALLBACK_MESSAGE, DEFAULT_FALLBACK_MESSAGE_DOC } from '@/shared/utils/errors'
 
-const API_BASE = import.meta.env.VITE_API_BASE;
+import { usePinnedDocumentStore } from '@/entites/Document/store/pinnedDocument'
+
+const API_BASE = import.meta.env.VITE_API_BASE
 const DOCS_PATH = '/user/docs'
 const DEBOUNCE_MS = 1000
 const MIN_SEARCH_LENGTH = 3
@@ -52,6 +65,7 @@ const MIN_SEARCH_LENGTH = 3
 interface Doc {
   id?: string
   name?: string
+  description?: string
   image?: string
   [key: string]: any
 }
@@ -65,6 +79,8 @@ const inputRef = ref<HTMLInputElement | null>(null)
 let debounceTimer: number | null = null
 let currentAbortController: AbortController | null = null
 let lastQueriedTerm = ''
+
+const pinnedStore = usePinnedDocumentStore()
 
 function buildDocsUrl(searchTerm: string): string {
   const url = new URL(API_BASE + DOCS_PATH)
@@ -83,15 +99,10 @@ function normalizeAndValidateDocs(docs: any[]): Doc[] {
   })
 }
 
-
 function getErrorMessageDoc(err: any, fallbackMessage = DEFAULT_FALLBACK_MESSAGE): string {
   if (isRequestCanceled(err)) return ''
   return getErrorMessage(err, fallbackMessage)
 }
-
-
-
-
 
 async function fetchDocs(searchTerm: string) {
   currentAbortController = request.abortRequest(currentAbortController)
@@ -109,7 +120,6 @@ async function fetchDocs(searchTerm: string) {
     })
 
     docs.value = normalizeAndValidateDocs(response.data)
-
   } catch (err: any) {
     const errMsg = getErrorMessageDoc(err, DEFAULT_FALLBACK_MESSAGE_DOC)
     if (errMsg) {
@@ -117,14 +127,11 @@ async function fetchDocs(searchTerm: string) {
       docs.value = []
       error.value = errMsg
     }
-
   } finally {
     loading.value = false
     currentAbortController = null
   }
 }
-
-
 
 async function handleSearch(term: string) {
   const trimmedTerm = term.trim()
@@ -144,7 +151,6 @@ async function handleSearch(term: string) {
   nextTick(() => inputRef.value?.focus())
 }
 
-
 watch(name, (newVal: string) => {
   if (debounceTimer) clearTimeout(debounceTimer)
   debounceTimer = window.setTimeout(() => {
@@ -152,7 +158,6 @@ watch(name, (newVal: string) => {
     debounceTimer = null
   }, DEBOUNCE_MS)
 }, { immediate: false })
-
 
 async function searchNow() {
   if (debounceTimer) {
@@ -164,19 +169,28 @@ async function searchNow() {
   lastQueriedTerm = term
 }
 
-
 onBeforeUnmount(() => {
   if (debounceTimer) clearTimeout(debounceTimer)
   if (currentAbortController) {
     try { currentAbortController.abort() } catch {}
   }
 })
+
+function onCardClick(doc: Doc) {
+  if (!doc?.id) return
+
+  pinnedStore.pinDocument({
+    id: doc.id,
+    name: doc.name,
+    description: doc.description,
+    image: doc.image
+  })
+
+  console.log('📌 Документ закреплён:', pinnedStore.pinnedDocument)
+}
 </script>
 
-
-
 <style lang="scss" scoped>
-
 @mixin status-style($color) {
   display: flex;
   padding-bottom: 16px;
@@ -188,12 +202,12 @@ onBeforeUnmount(() => {
 .search-documents {
   display: flex;
   flex-direction: column;
+
   &__title {
     font-weight: 600;
     font-size: 16px; 
     padding-top: 20px;
     padding-bottom: 12px;
-
   }
 
   &__status-results {
@@ -205,28 +219,35 @@ onBeforeUnmount(() => {
   } 
     
   &__results-cards {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 12px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
   }
+
   &__results-card-wrapper {
-      display: block;
+    display: block;
+    cursor: pointer;
+    outline: none;
+  }
+
+  &__results-card-wrapper:focus {
+    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
   }
 
   &__no-results {
-      font-size: 14px;
-      padding-bottom: 12px;
-      color: $color-barely-text;
-    }
+    font-size: 14px;
+    padding-bottom: 12px;
+    color: $color-barely-text;
+  }
 }
 
 @media (min-width: 720px) {
   .search-documents {
     &__results-cards {
-        grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(2, 1fr);
     }
   }
 }
