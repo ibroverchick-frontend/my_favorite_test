@@ -1,6 +1,6 @@
 <template>
   <div
-    class="parallelogram"
+    class="parallelogram-btn"
     :style="{
       '--color': color,
       '--angle': `${angle}deg`,
@@ -8,44 +8,37 @@
       '--text-color': textColor
     }"
   >
-    <div class="parallelogram__content">
-      <img v-if="icon" :src="icon" class="parallelogram__icon" alt="icon" />
-      <span class="parallelogram__number">{{ number }}</span>
+    <div class="parallelogram-btn__content">
+      <img v-if="icon" :src="icon" class="parallelogram-btn__icon" alt="icon" />
+      <span class="parallelogram-btn__number">{{ number }}</span>
     </div>
   </div>
 </template>
 
-<script setup>
-defineProps({
-  icon: {
-    type: String,
-    default: ''
-  },
-  number: {
-    type: [String, Number],
-    required: true
-  },
-  color: {
-    type: String,
-    default: '#1e90ff'
-  },
-  textColor: {
-    type: String,
-    default: '#ffffff'
-  },
-  shadow: {
-    type: String,
-    default: '0 4px 12px rgba(0, 0, 0, 0.25)'
-  },
-  angle: {
-    type: Number,
-    default: -20
-  }
-});
+<script lang="ts" setup>
+interface ParallelogramBtnProps {
+  icon?: string
+  number: string | number
+  color?: string
+  textColor?: string
+  shadow?: string
+  angle?: number
+}
+
+const props = defineProps<ParallelogramBtnProps>()
+
+const {
+  icon = '',
+  number,
+  color = '#1e90ff',
+  textColor = '#ffffff',
+  shadow = '0 4px 12px rgba(0, 0, 0, 0.25)',
+  angle = -20
+} = props
 </script>
 
 <style lang="scss" scoped>
-.parallelogram {
+.parallelogram-btn {
   display: inline-block;
   border-radius: 2px;
   user-select: none;
